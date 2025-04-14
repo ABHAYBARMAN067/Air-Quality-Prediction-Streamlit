@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Parameters - Air Quality Prediction{% endblock %}
+
+{% block content %}
+    <section class="parameters-section">
+        <h2>Parameters Explained</h2>
+        <p>Here are the pollutants and parameters used to predict air quality:</p>
+        <ul>
+            <li><strong>PM2.5:</strong> Fine particulate matter with a diameter of 2.5 micrometers or smaller. It can cause severe health issues if levels are high.</li>
+            <li><strong>PM10:</strong> Particulate matter with a diameter of 10 micrometers or smaller.</li>
+            <li><strong>NO2:</strong> Nitrogen dioxide, a gas produced by vehicles and industrial activities. High levels can cause respiratory problems.</li>
+            <li><strong>SO2:</strong> Sulfur dioxide, a gas emitted from burning fossil fuels. High concentrations can affect the lungs.</li>
+            <li><strong>CO:</strong> Carbon monoxide, a harmful gas from combustion engines and industrial activities.</li>
+            <li><strong>Temperature:</strong> Ambient temperature, which can influence the behavior of pollutants in the air.</li>
+        </ul>
+    </section>
+{% endblock %}

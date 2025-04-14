@@ -1,76 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Air Quality Prediction</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends 'base.html' %}
 
-  <!-- Navbar -->
-  <nav>
-    <div class="logo">AirCheck</div>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#how">How to Use</a></li>
-      <li><a href="#params">Parameters</a></li>
-    </ul>
-  </nav>
+{% block title %}Home - Air Quality Prediction{% endblock %}
 
-  <!-- Home -->
-  <section id="home">
-    <h1>Air Quality Prediction</h1>
-    <form action="/predict" method="post">
-      <input type="number" name="PM2.5" placeholder="PM2.5" required>
-      <input type="number" name="PM10" placeholder="PM10" required>
-      <input type="number" name="NO2" placeholder="NO2" required>
-      <input type="number" name="SO2" placeholder="SO2" required>
-      <input type="number" name="CO" placeholder="CO" required>
-      <input type="number" name="Temperature" placeholder="Temperature" required>
-      <button type="submit">Predict</button>
-    </form>
+{% block content %}
+    <section class="form-section">
+        <h2>Enter Pollutant Values</h2>
+        <form method="POST" action="/predict">
+            <label for="PM2.5">PM2.5 (µg/m³):</label>
+            <input type="number" name="PM2.5" step="any" required><br>
 
-    {% if result %}
-    <div class="result-card {{ color }}">
-      <h2>Air Quality is: {{ result }}</h2>
-    </div>
+            <label for="PM10">PM10 (µg/m³):</label>
+            <input type="number" name="PM10" step="any" required><br>
+
+            <label for="NO2">NO2 (µg/m³):</label>
+            <input type="number" name="NO2" step="any" required><br>
+
+            <label for="SO2">SO2 (µg/m³):</label>
+            <input type="number" name="SO2" step="any" required><br>
+
+            <label for="CO">CO (µg/m³):</label>
+            <input type="number" name="CO" step="any" required><br>
+
+            <label for="Temperature">Temperature (°C):</label>
+            <input type="number" name="Temperature" step="any" required><br>
+
+            <button type="submit">Predict</button>
+        </form>
+    </section>
+
+    {% if prediction_text %}
+        <div class="result">
+            <h3>{{ prediction_text }}</h3>
+        </div>
     {% endif %}
-  </section>
-
-  <!-- About -->
-  <section id="about">
-    <h2>About</h2>
-    <p>This web app predicts the air quality category based on pollutant values. Enter values and check how safe the air is in your area!</p>
-  </section>
-
-  <!-- How to Use -->
-  <section id="how">
-    <h2>How to Use</h2>
-    <ol>
-      <li>Enter the values of PM2.5, PM10, NO2, SO2, CO and Temperature.</li>
-      <li>Click on "Predict" button.</li>
-      <li>Check the result and AQI category shown below.</li>
-    </ol>
-  </section>
-
-  <!-- Parameters Info -->
-  <section id="params">
-    <h2>Parameter Info</h2>
-    <table>
-      <tr><th>Parameter</th><th>Description</th></tr>
-      <tr><td>PM2.5</td><td>Fine inhalable particles, dangerous for lungs</td></tr>
-      <tr><td>PM10</td><td>Coarse dust particles</td></tr>
-      <tr><td>NO2</td><td>Nitrogen Dioxide - from vehicles & industries</td></tr>
-      <tr><td>SO2</td><td>Sulphur Dioxide - industrial exhaust</td></tr>
-      <tr><td>CO</td><td>Carbon Monoxide - combustion gases</td></tr>
-      <tr><td>Temperature</td><td>Current ambient temperature</td></tr>
-    </table>
-  </section>
-
-  <footer>
-    <p>Thanks for visiting!</p>
-</footer>
-
-</body>
-</html>
+{% endblock %}

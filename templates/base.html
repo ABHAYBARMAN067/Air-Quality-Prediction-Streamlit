@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Air Quality Prediction{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Common Navbar -->
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/how-to-use">How to Use</a></li>
+                    <li><a href="/parameters">Parameters</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <!-- Main content area -->
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <p>Thanks for vosit</p>
+        </footer>
+    </div>
+</body>
+</html>
