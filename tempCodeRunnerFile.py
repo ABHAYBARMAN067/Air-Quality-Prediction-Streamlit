@@ -4,11 +4,11 @@ import numpy as np
 
 app = Flask(__name__)
 
-# Load the model, scaler, and label encoder at the start
+# Load model, scaler, and label encoder only once at startup
 try:
     model = joblib.load('air_quality_model.pkl')
     scaler = joblib.load('scaler.pkl')
-    label_encoder = joblib.load('label_encoder.pkl')  # Load the label encoder here
+    label_encoder = joblib.load('label_encoder.pkl')  # Load label encoder here
     print("Model, Scaler, and Label Encoder loaded successfully.")
 except Exception as e:
     print(f"Error loading model, scaler, or label encoder: {e}")
@@ -32,7 +32,6 @@ def parameters():
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Get input values from the form
         pm25 = float(request.form['PM2.5'])
         pm10 = float(request.form['PM10'])
         no2 = float(request.form['NO2'])
@@ -40,18 +39,16 @@ def predict():
         co = float(request.form['CO'])
         temperature = float(request.form['Temperature'])
 
-        # Validate input values
+        # Validate input
         if any(x < 0 for x in [pm25, pm10, no2, so2, co, temperature]):
             raise ValueError("Pollutant values can't be negative.")
 
-        # Prepare features for prediction
         features = np.array([[pm25, pm10, no2, so2, co, temperature]])
         features_scaled = scaler.transform(features)
 
-        # Predict AQI
         predicted_aqi = model.predict(features_scaled)
 
-        # Decode the predicted AQI category using the label encoder
+        # Decode prediction using pre-loaded label encoder
         predicted_category = label_encoder.inverse_transform([int(round(predicted_aqi[0]))])[0]
 
         return render_template('index.html', prediction_text=f"The predicted Air Quality is: {predicted_category}")

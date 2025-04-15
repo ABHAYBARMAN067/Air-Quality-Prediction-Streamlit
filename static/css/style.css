@@ -1,18 +1,24 @@
-/* Reset some default styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+
+/* Main content section */
 /* Main content section */
 section {
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    margin: 20px 0;
+    padding: 10px; /* Adjust padding to make the section smaller */
+    background-color: transparent;
+    margin: 20px auto; /* Center section and add vertical margin */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(5px);
+    max-width: 800px; /* Limit the width of the section */
 }
+
+
 
 /* Form styles */
 form {
@@ -28,9 +34,11 @@ form {
 .result {
     margin-top: 20px;
     padding: 10px;
-    background-color: rgba(224, 224, 224, 0.7); /* Keep this as is for a transparent grey */
+    background-color: rgba(224, 224, 224, 0.7); /* Transparent grey */
     border-radius: 4px;
     font-size: 16px;
+    backdrop-filter: blur(5px);
+    text-align: center; /* Center align the text */
 }
 body {
     font-family: Arial, sans-serif;
@@ -88,21 +96,12 @@ nav ul li a:hover {
 }
 
 /* Main content section */
-section {
-    padding: 20px;
-    background-color: transparent;
-    margin: 20px 0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(5px);
-}
-
 
 section:hover {
     transform: scale(1.02);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
+
 
 /* Form styles */
 form {
@@ -197,3 +196,4 @@ footer {
 body, p, li, h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
 }
+
